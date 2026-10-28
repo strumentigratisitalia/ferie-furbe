@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://strumentigratisitalia.github.io/ferie-furbe/sitemap.xml

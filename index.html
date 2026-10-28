@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ponti 2027: calcola quali giorni di ferie chiedere</title>
+<meta name="description" content="Scrivi quanti giorni di ferie hai e la tua città: Ferie Furbe ti dice quali giorni chiedere nel 2027 per avere il massimo di giorni di vacanza, con calendario, file per il telefono e testo per la richiesta. Gratis, senza registrazione.">
+<link rel="canonical" href="https://strumentigratisitalia.github.io/ferie-furbe/">
+<meta name="theme-color" content="#16233a">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Ferie Furbe">
+<meta property="og:title" content="Ponti 2027: quali giorni di ferie chiedere per il massimo di vacanza">
+<meta property="og:description" content="Metti i tuoi giorni di ferie e la tua città. Ti dice quali date chiedere, con calendario e testo pronto per la richiesta.">
+<meta property="og:url" content="https://strumentigratisitalia.github.io/ferie-furbe/">
+<meta property="og:image" content="https://strumentigratisitalia.github.io/ferie-furbe/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ferie Furbe",
+  "url": "https://strumentigratisitalia.github.io/ferie-furbe/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Qualsiasi browser",
+  "inLanguage": "it",
+  "description": "Calcolatore gratuito dei ponti e del piano ferie ottimale per il 2027 (e 2026, 2028): festività nazionali, santo patrono, settimana lavorativa e chiusure aziendali. Restituisce le date precise da chiedere, un calendario, un file .ics e il testo della richiesta ferie.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Quali sono i ponti del 2027?", "acceptedAnswer": {"@type": "Answer", "text": "Nel 2027 i ponti più convenienti sono: 1-6 gennaio (Capodanno venerdì, Epifania mercoledì: con 2 giorni di ferie si fanno 6 giorni), Pasqua 28 marzo con Pasquetta il 29, 2 giugno mercoledì (2 ferie per 5 giorni), 4 ottobre lunedì (weekend lungo gratis), 1 novembre lunedì (weekend lungo gratis), 8 dicembre mercoledì (2 ferie per 5 giorni). Il 25 aprile e il 15 agosto cadono di domenica, il 1° maggio e Natale di sabato."}},
+    {"@type": "Question", "name": "Il 4 ottobre è festivo?", "acceptedAnswer": {"@type": "Answer", "text": "Sì, dal 2026. La legge 8 ottobre 2025 n. 151 ha reintrodotto la festa nazionale di San Francesco d'Assisi. Nel 2027 il 4 ottobre cade di lunedì."}},
+    {"@type": "Question", "name": "Come funziona il calcolo?", "acceptedAnswer": {"@type": "Answer", "text": "Il sito considera tutti i giorni dell'anno, segna weekend, festività nazionali, patrono e chiusure aziendali, e con un algoritmo esatto (programmazione dinamica) sceglie l'insieme di pause che dà più giorni di vacanza con i giorni di ferie disponibili."}},
+    {"@type": "Question", "name": "I miei dati vengono salvati?", "acceptedAnswer": {"@type": "Answer", "text": "No. Il calcolo avviene nel browser e non c'è nessun server che riceve i dati. Il link che condividi contiene solo i parametri che hai scelto."}}
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#frase-form">Vai al calcolo</a>
+
+<header class="top">
+  <a class="brand" href="./"><i aria-hidden="true"></i>Ferie Furbe</a>
+  <nav><a href="ponti-2027/">Ponti 2027</a><a href="santo-patrono/">Santo patrono</a></nav>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Quali giorni di ferie chiedere per avere più vacanza possibile.</h1>
+    <form id="form" novalidate>
+      <p class="frase-form" id="frase-form">Nel
+        <select id="anno" class="campo" aria-label="Anno"><option>2026</option><option selected>2027</option><option>2028</option></select>
+        ho <input id="ferie" class="campo" type="number" inputmode="numeric" min="0" max="60" value="8" aria-label="Giorni di ferie disponibili"> giorni di ferie, lavoro
+        <select id="settimana" class="campo" aria-label="Settimana lavorativa"><option value="5">dal lunedì al venerdì</option><option value="6">dal lunedì al sabato</option></select>
+        e il mio patrono è quello di <select id="citta" class="campo" aria-label="Città per il santo patrono"><option value="">nessuna città</option></select>.
+      </p>
+
+      <p class="risultato" id="frase" aria-live="polite"></p>
+      <p id="err" class="err" role="alert" hidden></p>
+
+      <details class="opzioni">
+        <summary>Altre opzioni: chiusure aziendali, tipo di pause, patrono di un'altra città</summary>
+        <div class="opz-grid">
+          <label>Preferisco
+            <select id="strategia">
+              <option value="mix">Un mix: pause da 4 a 16 giorni</option>
+              <option value="brevi">Tanti ponti brevi (3-5 giorni)</option>
+              <option value="lunghe">Poche vacanze lunghe (9 giorni o più)</option>
+            </select>
+          </label>
+          <label>Chiusure aziendali o giorni già liberi <small>(es. 24/12, 31/12, 16/8)</small>
+            <textarea id="chiusure" placeholder="24/12, 31/12"></textarea>
+          </label>
+          <label hidden>Data del patrono <small>(giorno/mese)</small>
+            <input id="patronoData" placeholder="es. 19/9">
+          </label>
+          <label class="check"><input type="checkbox" id="pentecoste"> Lunedì di Pentecoste festivo (Alto Adige)</label>
+        </div>
+      </details>
+    </form>
+  </section>
+
+  <section id="risultato" aria-labelledby="cal-h">
+    <h2 id="cal-h" class="visually-hidden" style="position:absolute;left:-999px">Calendario dell'anno</h2>
+    <div class="anno-cal" id="calendario"></div>
+    <p class="legenda"><span><i style="background:var(--mare)"></i>ferie da chiedere</span><span><i style="background:var(--rosso-chiaro);border:1px solid var(--rosso)"></i>festivo</span><span><i style="background:var(--mare-chiaro);border:1px solid var(--mare)"></i>giorni di vacanza</span><span><i style="background:var(--libero)"></i>weekend</span></p>
+  </section>
+
+  <section class="sezione" aria-labelledby="pause-h">
+    <h2 id="pause-h">Le pause, una per una</h2>
+    <ol class="pause" id="pause"></ol>
+    <div class="azioni" id="azioni" hidden>
+      <button type="button" class="btn btn-primario" id="condividi">Condividi il mio piano</button>
+      <button type="button" class="btn" id="copiaRichiesta">Copia il testo della richiesta ferie</button>
+      <button type="button" class="btn" id="scaricaIcs">Scarica per il calendario del telefono (.ics)</button>
+      <button type="button" class="btn" id="copiaLink">Copia il link di questo piano</button>
+    </div>
+    <div id="gratis-box" hidden>
+      <h3 style="margin:24px 0 6px;font-size:1.1rem">Weekend lunghi senza spendere ferie</h3>
+      <ul class="gratis" id="gratis"></ul>
+    </div>
+  </section>
+
+  <section class="sezione" aria-labelledby="festivi-h">
+    <h2 id="festivi-h">Festività</h2>
+    <ul class="festivi" id="festivi"></ul>
+    <p class="hint">Le date dei patroni sono quelle delle feste cittadine più note; controlla sul sito del tuo Comune se la tua azienda la riconosce come festiva. Il 4 ottobre è festivo dal 2026 (legge 151/2025).</p>
+  </section>
+
+  <section class="testo" aria-labelledby="how-h">
+    <h2 id="how-h">Come funziona</h2>
+    <ol>
+      <li>Segna sul calendario i giorni già liberi: weekend, festività nazionali, il patrono della tua città e le chiusure che hai aggiunto.</li>
+      <li>Prova tutte le combinazioni di pause possibili con i tuoi giorni di ferie e tiene quella che dà più giorni di vacanza in totale. Non è un'approssimazione: è il massimo.</li>
+      <li>Ti mostra le date precise da chiedere, con il testo già scritto per il responsabile e il file da importare nel calendario.</li>
+    </ol>
+    <p class="hint">Tutto avviene nel browser. Nessun dato viene inviato o salvato.</p>
+  </section>
+
+  <section class="testo faq" aria-labelledby="faq-h">
+    <h2 id="faq-h">Domande frequenti</h2>
+    <details><summary>Quali sono i ponti del 2027?</summary><p>I migliori: 1-6 gennaio (Capodanno venerdì ed Epifania mercoledì: con 2 ferie fai 6 giorni), Pasqua il 28 marzo con Pasquetta il 29, 2 giugno mercoledì (2 ferie per 5 giorni), 4 ottobre e 1° novembre di lunedì (weekend lunghi gratis), 8 dicembre mercoledì (2 ferie per 5 giorni). Il 25 aprile e Ferragosto cadono di domenica, il 1° maggio e Natale di sabato. Tutto nella <a href="ponti-2027/">pagina sui ponti 2027</a>.</p></details>
+    <details><summary>Il 4 ottobre è davvero festivo?</summary><p>Sì, dal 2026: la legge 8 ottobre 2025 n. 151 ha reintrodotto la festa nazionale di San Francesco. Nel 2027 cade di lunedì.</p></details>
+    <details><summary>Perché mi avanzano giorni di ferie?</summary><p>Perché con quelli in più non si otterrebbe nessuna pausa che rientra nel tipo scelto (per esempio pause da almeno 4 giorni). Puoi scegliere "Tanti ponti brevi" per usarli tutti, oppure tenerli per imprevisti.</p></details>
+    <details><summary>Lavoro anche il sabato, o faccio turni?</summary><p>Puoi scegliere la settimana dal lunedì al sabato. Per i turni il calcolo non è preciso, perché i riposi cambiano ogni settimana.</p></details>
+    <details><summary>La mia azienda chiude in agosto o a Natale?</summary><p>Scrivi quei giorni tra le chiusure aziendali: vengono trattati come già liberi e non ti costano ferie.</p></details>
+    <details><summary>Dove finiscono i miei dati?</summary><p>Da nessuna parte. Il calcolo avviene sul tuo telefono o computer. Il link che condividi contiene solo i parametri che hai scelto, non il tuo nome.</p></details>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Ferie Furbe è gratuito e non salva i tuoi dati. <a href="ponti-2027/">Ponti 2027</a> <a href="santo-patrono/">Santi patroni</a> <a href="privacy/">Privacy</a></p>
+</footer>
+<p id="toast" class="toast" role="status" hidden></p>
+
+<script src="festivita.js"></script>
+<script src="ottimizza.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

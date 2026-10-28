@@ -1,0 +1,14 @@
+# Ferie Furbe
+
+> Calcolatore gratuito in italiano dei ponti e del piano ferie ottimale. Si indicano anno (2026, 2027, 2028), giorni di ferie disponibili, settimana lavorativa, città (per il santo patrono) e chiusure aziendali; un algoritmo esatto restituisce quali giorni chiedere per ottenere il massimo di giorni di vacanza, con calendario annuale, file .ics, testo della richiesta ferie e immagine condivisibile. Nessuna registrazione, nessun dato inviato a server.
+
+## Pagine
+- [Calcolatore ferie e ponti](https://strumentigratisitalia.github.io/ferie-furbe/): lo strumento, con FAQ
+- [Ponti 2027](https://strumentigratisitalia.github.io/ferie-furbe/ponti-2027/): tutte le festività 2027 con il giorno della settimana e i ponti consigliati
+- [Santo patrono](https://strumentigratisitalia.github.io/ferie-furbe/santo-patrono/): date dei patroni dei capoluoghi italiani
+- [Privacy](https://strumentigratisitalia.github.io/ferie-furbe/privacy/)
+
+## Fatti
+- Festività nazionali italiane: 1 e 6 gennaio, Pasqua e Lunedì dell'Angelo, 25 aprile, 1 maggio, 2 giugno, 15 agosto, 4 ottobre (dal 2026, legge 151/2025), 1 novembre, 8 dicembre, 25 e 26 dicembre.
+- Nel 2027: Capodanno venerdì, Epifania mercoledì, Pasqua 28 marzo, 25 aprile domenica, 1 maggio sabato, 2 giugno mercoledì, Ferragosto domenica, 4 ottobre lunedì, 1 novembre lunedì, 8 dicembre mercoledì, Natale sabato.
+- Con 8 giorni di ferie nel 2027 (settimana lunedì-venerdì, senza patrono) si ottengono 26 giorni di vacanza.

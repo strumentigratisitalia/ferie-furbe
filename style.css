@@ -66,11 +66,11 @@ label small { font-weight: 400; color: var(--ink-2); }
 .griglia { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
 .griglia span { aspect-ratio: 1; display: grid; place-items: center; font-size: .78rem; border-radius: 6px; background: #fff; color: var(--ink); border: 1px solid transparent; }
 .griglia .libero { background: var(--libero); color: var(--ink-2); }
-.griglia .festivo { background: var(--rosso-chiaro); color: var(--rosso); font-weight: 700; }
+.griglia .festivo { background: var(--rosso-chiaro); color: #a8201c; font-weight: 700; }
 .griglia .pausa { border-color: var(--mare); }
 .griglia .festivo.pausa { background: var(--rosso); color: #fff; }
 .griglia .libero.pausa { background: var(--mare-chiaro); color: var(--mare-scuro); }
-.griglia .ferie { background: var(--mare); color: #fff; font-weight: 800; }
+.griglia .ferie { background: var(--mare-scuro); color: #fff; font-weight: 800; }
 .legenda { display: flex; flex-wrap: wrap; gap: 14px 22px; font-size: .9rem; color: var(--ink-2); margin: 6px 0 20px; }
 .legenda i { display: inline-block; width: 14px; height: 14px; border-radius: 4px; vertical-align: -2px; margin-right: 6px; }
 
@@ -104,6 +104,7 @@ label small { font-weight: 400; color: var(--ink-2); }
 .faq summary { font-weight: 700; cursor: pointer; }
 .faq p { margin: 8px 0 0; color: #2d3748; }
 
+.scorri { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 table.tab { border-collapse: collapse; width: 100%; font-size: .97rem; }
 table.tab th, table.tab td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
 table.tab th { font-weight: 700; }

@@ -24,7 +24,7 @@ a { color: var(--mare-scuro); }
 .skip:focus { left: 16px; top: 16px; background: var(--ink); color: #fff; padding: 8px 12px; z-index: 9; }
 
 .top { display: flex; justify-content: space-between; align-items: center; gap: 16px; max-width: 1120px; margin: 0 auto; padding: 18px 20px; }
-.brand { font-weight: 800; font-size: 1.35rem; text-decoration: none; color: var(--ink); letter-spacing: -.02em; display: inline-flex; align-items: center; gap: 10px; }
+.brand { white-space: nowrap; font-weight: 800; font-size: 1.35rem; text-decoration: none; color: var(--ink); letter-spacing: -.02em; display: inline-flex; align-items: center; gap: 10px; }
 .brand i { width: 14px; height: 14px; border-radius: 4px; background: var(--mare); display: inline-block; box-shadow: 18px 0 0 var(--rosso); margin-right: 18px; }
 .top nav { display: flex; gap: 18px; font-weight: 600; font-size: .95rem; }
 .top nav a { text-decoration: none; color: var(--ink); }
@@ -117,6 +117,8 @@ table.tab th { font-weight: 700; }
 
 @media (max-width: 900px) { .anno-cal { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 640px) {
+  .top { flex-wrap: wrap; row-gap: 10px; }
+  .top nav { gap: 6px 16px; flex-wrap: wrap; font-size: .92rem; }
   .anno-cal { grid-template-columns: repeat(2, 1fr); gap: 14px; }
   .griglia span { font-size: .72rem; border-radius: 4px; }
   .pause li { grid-template-columns: 1fr; gap: 4px; }
